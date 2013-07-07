@@ -1,0 +1,1 @@
+﻿这个直接fork自go1.1里带的 database/sql 
