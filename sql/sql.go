@@ -12,11 +12,11 @@ package sql
 import (
 	"errors"
 	"fmt"
+	"github.com/litqqs/tq/sql/driver"
 	"io"
 	"runtime"
 	"sync"
 	"time"
-	"github.com/litqqs/tq/sql/driver"
 )
 
 var drivers = make(map[string]driver.Driver)
@@ -1330,6 +1330,8 @@ func (rs *Rows) initCols() bool {
 	}
 	return true
 }
+
+//Return colName index of result. If colName is not in columns return -1.
 func (rs *Rows) ColIndex(colName string) int {
 	if rs.mapCols == nil {
 		if !rs.initCols() {
@@ -1342,6 +1344,19 @@ func (rs *Rows) ColIndex(colName string) int {
 	}
 	return -1
 }
+
+// Get value in colIndex. any should be a point.
+//
+// Example usage:
+//
+//  var s string
+//  rows.ScanValue(0,&s)
+//
+//  var i int32
+//  rows.ScanValue(0,&i)
+//
+//  var b bool
+//  rows.ScanValue(0,&b)
 func (rs *Rows) ScanValue(colIndex int, any interface{}) (err error) {
 	if rs.lastcols == nil {
 		return errors.New("sql: no value available")
@@ -1361,6 +1376,8 @@ func (rs *Rows) I(colIndex int) (ret int64, err error) {
 	}
 	return
 }
+
+// get colIndex column as int64. If err return 0
 func (rs *Rows) AsInt(colIndex int) (ret int64) {
 	ret, _ = rs.I(colIndex)
 	return
@@ -1372,6 +1389,8 @@ func (rs *Rows) F(colIndex int) (ret float64, err error) {
 	}
 	return
 }
+
+// Get value at colIndex as float64. If err return 0
 func (rs *Rows) AsFloat(colIndex int) (ret float64) {
 	ret, _ = rs.F(colIndex)
 	return
@@ -1384,6 +1403,8 @@ func (rs *Rows) S(colIndex int) (ret string, err error) {
 	}
 	return
 }
+
+// Get value at colIndex as string.
 func (rs *Rows) AsStr(colIndex int) (ret string) {
 	ret, _ = rs.S(colIndex)
 	return
