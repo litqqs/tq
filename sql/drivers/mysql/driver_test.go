@@ -1,7 +1,7 @@
 package mysql
 
 import (
-	"tq/sql"
+	"github.com/litqqs/tq/sql"
 	"fmt"
 	"io"
 	"io/ioutil"

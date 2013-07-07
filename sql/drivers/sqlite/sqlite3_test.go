@@ -2,7 +2,7 @@ package sqlite
 
 import (
 	"crypto/rand"
-	"tq/sql"
+	"github.com/litqqs/tq/sql"
 	"encoding/hex"
 	"os"
 	"path/filepath"

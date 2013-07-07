@@ -16,7 +16,7 @@ import (
 	"runtime"
 	"sync"
 	"time"
-	"tq/sql/driver"
+	"github.com/litqqs/tq/sql/driver"
 )
 
 var drivers = make(map[string]driver.Driver)
@@ -498,8 +498,8 @@ func (db *DB) conn() (*driverConn, error) {
 }
 
 var (
-	errConnClosed = errors.New("tq/sql: internal sentinel error: conn is closed")
-	errConnBusy   = errors.New("tq/sql: internal sentinel error: conn is busy")
+	errConnClosed = errors.New("github.com/litqqs/tq/sql: internal sentinel error: conn is closed")
+	errConnBusy   = errors.New("github.com/litqqs/tq/sql: internal sentinel error: conn is busy")
 )
 
 // connIfFree returns (wanted, nil) if wanted is still a valid conn and

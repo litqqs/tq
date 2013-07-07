@@ -5,7 +5,7 @@
 package sql
 
 import (
-	"tq/sql/driver"
+	"github.com/litqqs/tq/sql/driver"
 	"errors"
 	"fmt"
 	"io"

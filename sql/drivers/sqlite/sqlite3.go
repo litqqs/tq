@@ -52,8 +52,8 @@ import (
 	"io"
 	"strings"
 	"time"
-	"tq/sql"
-	"tq/sql/driver"
+	"github.com/litqqs/tq/sql"
+	"github.com/litqqs/tq/sql/driver"
 	"unsafe"
 )
 

@@ -3,8 +3,8 @@ package main
 import (
 	"fmt"
 	"os"
-	"tq/sql"
-	_ "tq/sql/drivers/sqlite"
+	"github.com/litqqs/tq/sql"
+	_ "github.com/litqqs/tq/sql/drivers/sqlite"
 )
 
 func main() {

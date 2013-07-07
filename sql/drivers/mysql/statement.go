@@ -10,7 +10,7 @@
 package mysql
 
 import (
-	"tq/sql/driver"
+	"github.com/litqqs/tq/sql/driver"
 )
 
 type mysqlStmt struct {

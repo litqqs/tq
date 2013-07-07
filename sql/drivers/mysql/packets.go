@@ -11,7 +11,7 @@ package mysql
 
 import (
 	"bytes"
-	"tq/sql/driver"
+	"github.com/litqqs/tq/sql/driver"
 	"encoding/binary"
 	"errors"
 	"fmt"

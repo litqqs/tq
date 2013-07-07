@@ -5,7 +5,7 @@
 package sql_test
 
 import (
-	"tq/sql"
+	"github.com/litqqs/tq/sql"
 	"fmt"
 	"log"
 )
