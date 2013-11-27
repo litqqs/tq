@@ -20,6 +20,7 @@ type mysqlDriver struct{}
 // Open new Connection.
 // See https://github.com/go-sql-driver/mysql#dsn-data-source-name for how
 // the DSN string is formated
+// DSNFormat [username[:password]@][protocol[(address)]]/dbname[?param1=value1&...&paramN=valueN]
 func (d *mysqlDriver) Open(dsn string) (driver.Conn, error) {
 	var err error
 
