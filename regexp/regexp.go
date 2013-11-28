@@ -109,10 +109,6 @@ func Compile(expr string) (*Regexp, error) {
 	return compile(expr, syntax.Perl, false)
 }
 
-func CompileEx(expr string, mode syntax.Flags) (*Regexp, error) {
-	return compile(expr, syntax.Perl | mode, false)
-}
-
 // CompilePOSIX is like Compile but restricts the regular expression
 // to POSIX ERE (egrep) syntax and changes the match semantics to
 // leftmost-longest.
@@ -134,10 +130,6 @@ func CompileEx(expr string, mode syntax.Flags) (*Regexp, error) {
 // See http://swtch.com/~rsc/regexp/regexp2.html#posix for details.
 func CompilePOSIX(expr string) (*Regexp, error) {
 	return compile(expr, syntax.POSIX, true)
-}
-
-func CompilePOSIXEx(expr string, mode syntax.Flags) (*Regexp, error) {
-	return compile(expr, syntax.POSIX | mode, true)
 }
 
 // Longest makes future searches prefer the leftmost-longest match.
