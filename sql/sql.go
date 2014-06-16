@@ -1443,16 +1443,18 @@ func (s *Stmt) Close() error {
 		return s.stickyErr
 	}
 	s.mu.Lock()
-	defer s.mu.Unlock()
 	if s.closed {
+		s.mu.Unlock()
 		return nil
 	}
 	s.closed = true
 
 	if s.tx != nil {
 		s.txsi.Close()
+		s.mu.Unlock()
 		return nil
 	}
+	s.mu.Unlock()
 
 	return s.db.removeDep(s, s)
 }
@@ -1504,17 +1506,15 @@ func (rs *Rows) Next() bool {
 	if rs.closed {
 		return false
 	}
-	if rs.lasterr != nil {
-		return false
-	}
 	if rs.lastcols == nil {
 		rs.initCols()
 	}
 	rs.lasterr = rs.rowsi.Next(rs.lastcols)
-	if rs.lasterr == io.EOF {
+	if rs.lasterr != nil {
 		rs.Close()
+		return false
 	}
-	return rs.lasterr == nil
+	return true
 }
 func (rs *Rows) initCols() bool {
 	if rs.closed || rs.lasterr != nil {
